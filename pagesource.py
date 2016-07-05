@@ -5,6 +5,8 @@ def remove_html(string):
         string = string[:string.find("<")]+""+string[string.find(">")+1:]
     while(string.find("&nbsp;")!=-1):
         string = string[:string.find("&nbsp;")]+" "+string[string.find("&nbsp;")+6:]
+    while(string.find("&quot;")!=-1):
+        string = string[:string.find("&quot;")]+" "+string[string.find("&quot;")+6:]
     return string
 while True:
     print"Enter the URL you wish to crawl..."
@@ -43,8 +45,8 @@ while True:
             data = data +"\n"+remove_html(temp_source[temp_source.find("<p>")+3:temp_source.find("</p>")])
             temp_source = temp_source[temp_source.find("</p>")+4:]
     try:
-        data = data.encode('UTF-8')
-        #data = data.decode('Latin-1')
+        data = data.decode('UTF-8')
+        data = data.encode('Latin-1')
     except:
         lol = "wat"
     print("Title: "+title)
