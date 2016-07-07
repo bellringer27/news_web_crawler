@@ -5,7 +5,7 @@ soc = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 port = 5005
 connected = False
 accepting = True
-soc.bind(('',port))
+soc.bind(('0.0.0.0',port))
 soc.listen(5)
 print("[Server]: Started server.")
 print("[Server]: Accepting connections on port "+port)
