@@ -63,10 +63,11 @@ while True:
             comments.append(comment(comment_user[i].text,comment_data[i].text))
     sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     sock.connect(server_address)
-    msg = site+"++"+title+"++"+author+"++"+date+"++"+article
+    msg = site+']['+title+']['+author+']['+date+']['+article
     for i in xrange(0,len(comments)):
-        msg = msg+"++"+comments[i].user+"-+-"+comments[i].data
+        msg = msg+']['+comments[i].user+'}{'+comments[i].data
     try:
-        sock.sendall(msg)
+        sock.sendall(msg.encode('utf-8'))
     finally:
         sock.close()
+    
