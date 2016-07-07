@@ -8,11 +8,11 @@ accepting = True
 soc.bind(('',port))
 soc.listen(5)
 print("[Server]: Started server.")
-print("[Server]: Accepting connections on port "+port)
+print("[Server]: Accepting connections on port ",port)
 while accepting == True:
     (conn, addr)=soc.accept()
     connected = True
-    print ("[Server]: Got connection from "+addr)
+    print '[Server]: Got connection from ',addr
     while connected == True:
         msg = conn.recv(1024)
         if msg:
