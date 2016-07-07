@@ -14,7 +14,7 @@ while accepting == True:
     (conn, addr)=soc.accept()
     print '[Server]: Got connection from ',addr
     if True:
-        msg = conn.recv(1024)
+        msg = conn.recv(1073741824)
 	msg = msg.decode('utf-8')
         if msg:
             data_list = msg.split('][')
