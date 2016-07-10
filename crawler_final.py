@@ -9,7 +9,7 @@ class comment(object): #Declares comment class for later use
     def __init__(self,user,data):
         self.user = user
         self.data = data
-server_address = ('192.168.0.147',5005)
+server_address = ('48.218.255.24',5005)
 driver = webdriver.Chrome()
 while True:
     print"Enter the URL you wish to crawl..."
@@ -34,7 +34,7 @@ while True:
         article = driver.find_element_by_class_name('article-text').text
         date = driver.page_source[driver.page_source.find('pubDate:"')+9:driver.page_source.find('myTopChannelName')-6]
         x=0
-        while ('<div class="fyre-stream-more">' in driver.page_source) and x<10:
+        while ('<div class="fyre-stream-more">' in driver.page_source) and x<15:
             driver.find_element_by_class_name('fyre-stream-more').click()
             sleep(4)
             x+=1
