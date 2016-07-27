@@ -46,6 +46,7 @@ while True:
         for i in xrange(0,len(comment_data)):
             comments.append(comment(comment_user[i].text,comment_data[i].text))
     elif(myurl.find("washingtonpost.com")!=-1): #Specified code for Washington Post sites.
+        sleep(6)
         site = 'Washington Post'
         title = driver.page_source[driver.page_source.find('<h1 data-pb-field="customFields.web_headline" itemprop="headline">')+66:driver.page_source.find('</h1>')]
         author = driver.find_element_by_class_name('pb-byline').text
@@ -54,10 +55,14 @@ while True:
         driver.find_element_by_class_name('echo-apps-conversations-streamingState-live').click()
         sleep(10)
         x=0
-        while('<div class="echo-streamserver-controls-stream-more"' in driver.page_source) and x<15:
-            driver.find_element_by_class_name('echo-streamserver-controls-stream-more').click()
-            x+=1
-            sleep(5)
+        while('<div class="echo-streamserver-controls-stream-more" style="display: none;"' not in driver.page_source) and x<15:
+            try:
+                driver.find_element_by_class_name('echo-streamserver-controls-stream-more').click()
+                x+=1
+                sleep(10)
+            except:
+                sleep(2)
+
         comment_data = driver.find_elements_by_class_name('echo-streamserver-controls-stream-item-text')
         comment_user = driver.find_elements_by_class_name('echo-streamserver-controls-stream-item-authorName')
         comments = []
