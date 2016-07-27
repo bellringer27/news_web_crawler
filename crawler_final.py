@@ -17,6 +17,8 @@ while True:
     myurl = input("@>") #Recieve the url.
     driver.get(myurl)
     sleep(3)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    sleep(2)
     if(myurl.find("cnn.com")!=-1): #Specified code for CNN sites
         site = 'CNN'
         title = driver.find_element_by_class_name('pg-headline').text
@@ -49,8 +51,8 @@ while True:
         author = driver.find_element_by_class_name('pb-byline').text
         article = driver.find_element_by_id('article-body').text
         date = driver.find_element_by_class_name('pb-timestamp').text
-        driver.find_element_by_class_name('echo-apps-conversations-streamingState').click()
-        sleep(4)
+        driver.find_element_by_class_name('echo-apps-conversations-streamingState-live').click()
+        sleep(10)
         x=0
         while('<div class="echo-streamserver-controls-stream-more"' in driver.page_source) and x<15:
             driver.find_element_by_class_name('echo-streamserver-controls-stream-more').click()
