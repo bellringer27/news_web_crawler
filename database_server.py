@@ -14,15 +14,17 @@ while accepting == True:
     (conn, addr)=soc.accept()
     print '[Server]: Got connection from ',addr
     if True:
+	msg = ''
         waiting = True
-        msg = ""
         while waiting == True:
             msgf = conn.recv(1073741824)
-            msgf = msg.decode('utf-8')
+            msgf = msgf.decode('utf-8')
             msg = msg+''+msgf
             if(msg.find("qwertyend")!=-1):
                 waiting = False
-        if msg:
+		msg.replace('qwertyend','',1)
+        print('finished')
+	if msg:
             data_list = msg.split('][')
             dsite = data_list[0]
             title = data_list[1]
