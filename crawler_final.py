@@ -69,6 +69,7 @@ while True:
     for i in xrange(0,len(comments)):
         msg = msg+']['+comments[i].user+'}{'+comments[i].data
     try:
+        msg = msg+'qwertyend'
         sock.sendall(msg.encode('utf-8'))
     finally:
         sock.close()
