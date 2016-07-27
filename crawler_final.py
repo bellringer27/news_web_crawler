@@ -36,10 +36,14 @@ while True:
         article = driver.find_element_by_class_name('article-text').text
         date = driver.page_source[driver.page_source.find('pubDate:"')+9:driver.page_source.find('myTopChannelName')-6]
         x=0
-        while ('<div class="fyre-stream-more">' in driver.page_source) and x<15:
-            driver.find_element_by_class_name('fyre-stream-more').click()
-            sleep(4)
-            x+=1
+        while ('<div class="fyre-stream-more" style="display: none;">' not in driver.page_source) and x<15:
+            try:
+                driver.find_element_by_class_name('fyre-stream-more').click()
+                x+=1
+                sleep(6)
+            except:
+                sleep(2)
+
         comment_data = driver.find_elements_by_class_name('fyre-comment-body')
         comment_user = driver.find_elements_by_class_name('fyre-comment-username')
         comments = []
