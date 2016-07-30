@@ -1,3 +1,4 @@
+import re
 import socket
 import MySQLdb
 print("[Server]: Attempting to start server.")
@@ -23,7 +24,8 @@ while accepting == True:
             if(msg.find("qwertyend")!=-1):
                 waiting = False
 		msg.replace('qwertyend','',1)
-        print('finished')
+	highpoints = re.compile(u'[\U00010000-\U0010ffff]')
+	highpoints.sub(u'',msg)
 	if msg:
             data_list = msg.split('][')
             dsite = data_list[0]
